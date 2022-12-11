@@ -1,9 +1,12 @@
 import os
 from geoip2 import database
 import requests
-from decouple import config
 import tarfile
 import shutil
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
 
 ROOT_DB_PATH = os.path.dirname(__file__)
 DB_FILE_PATH = os.path.join(ROOT_DB_PATH, 'db/GeoLite2-City.mmdb')
@@ -28,7 +31,7 @@ class GeoLocation:
         if not os.path.exists(DB_FILE_PATH):
             print('Downloading GeoLite2 database...')
             # Download the database
-            response = requests.get(db_url, params={'edition_id': "GeoLite2-City", 'license_key': config('MAXMIND_LICENCE_KEY'), 'suffix': 'tar.gz'},
+            response = requests.get(db_url, params={'edition_id': "GeoLite2-City", 'license_key': os.getenv('MAXMIND_LICENCE_KEY'), 'suffix': 'tar.gz'},
                                     stream=True)
             with open(ROOT_DB_PATH + '.tar.gz', 'wb') as f:
                 f.write(response.raw.read())
@@ -53,9 +56,9 @@ class GeoLocation:
         response = self.reader.city(ip_address)
         return {
             'country': response.country.name,
-            'state/province': response.subdivisions.most_specific.name,
+            'state': response.subdivisions.most_specific.name,
             'city': response.city.name,
-            'postal code': response.postal.code,
+            'postal_code': response.postal.code,
             'latitude': response.location.latitude,
             'longitude': response.location.longitude
         }
