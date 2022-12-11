@@ -10,6 +10,8 @@
 
 ### 1. Clone the repository
 
+    git clone https://github.com/justdataplease/bigquery-translation.git
+
 ### 2. CLI : Deploy Cloud Function (gcf)
 
     gcloud functions deploy bigquery-ip_lookup --gen2 --runtime python39 --trigger-http --project=<your-project-id> --entry-point=ip_lookup --source . --region=europe-west3 --memory=128Mi --max-instances=3 --allow-unauthenticated
