@@ -3,16 +3,16 @@
 ## How to reproduce
 
 ***Replace the following with your own
-
 1) \<your-project-id>
-2) \<gcf-conn-name> - xxxxxx.eu.gcf-conn
-3) \<gcf-endpoint> - https://bigquery-iplookup-xxxxxx.a.run.app
+2) \<gcf-conn-name> (step 2)
+3) \<gcf-endpoint> (step 4)
 
 ### 1. Clone the repository
     git clone https://github.com/justdataplease/bigquery-translation.git
 
 ### 2. CLI : Deploy Cloud Function (gcf)
     gcloud functions deploy bigquery-ip_lookup --gen2 --runtime python39 --trigger-http --project=<your-project-id> --entry-point=ip_lookup --source . --region=europe-west3 --memory=128Mi --max-instances=3 --allow-unauthenticated
+Visit Google [Cloud Console Functions](https://console.cloud.google.com/functions/list?project=) to retrieve <gcf-endpoint> (i.e https://bigquery-iplookup-xxxxxx.a.run.app)
 
 ### 3. CLI : Create an example DATASET, in BigQuery.
     bq mk --dataset_id=<your-project-id>:ip_lookup --location=EU
@@ -21,6 +21,7 @@
     gcloud components update
     bq mk --connection --display_name='my_gcf_conn' --connection_type=CLOUD_RESOURCE --project_id=<your-project-id> --location=EU gcf-conn
     bq show --project_id=<your-project-id> --location=EU --connection gcf-conn
+From the output of the last command, note the name <gcf-conn-name> (i.e. xxxxxx.eu.gcf-conn) 
 
 ### 5. BIGQUERY : Create a remote UDF
     CREATE OR REPLACE FUNCTION `<your-project-id>.ip_lookup.lookup`(ip_address STRING)
