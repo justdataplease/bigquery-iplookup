@@ -1,4 +1,4 @@
-# Microservices as Functions in BigQuery - Offline IP Address Lookup (Part 2)
+# Microservices as Functions in BigQuery - IP Address Lookup using SQL (Part 2)
 
 ## How to reproduce
 
@@ -23,7 +23,7 @@ Visit Google [Cloud Console Functions](https://console.cloud.google.com/function
     bq show --project_id=<your-project-id> --location=EU --connection gcf-conn
 From the output of the last command, note the name <gcf-conn-name> (i.e. xxxxxx.eu.gcf-conn) 
 
-### 5. BIGQUERY : Create a remote UDF
+### 5. BIGQUERY : Create a Remote Function 
     CREATE OR REPLACE FUNCTION `<your-project-id>.ip_lookup.lookup`(ip_address STRING)
     RETURNS STRING
     REMOTE WITH CONNECTION `<gcf-conn-name>`
@@ -44,7 +44,7 @@ From the output of the last command, note the name <gcf-conn-name> (i.e. xxxxxx.
            ('185.143.146.171'),
            ('121.126.20.41');
 
-### 7. BIGQUERY : Test remote UDF
+### 7. BIGQUERY : Test Remote Function
     WITH A AS (SELECT `<your-project-id>.ip_lookup.lookup`(ip_address) ip_address_location,ip_address FROM `<your-project-id>.ip_lookup.example_dataset`)
     
     select
