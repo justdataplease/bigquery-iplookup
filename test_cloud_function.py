@@ -22,4 +22,7 @@ data = {
 response = requests.post(function_url, json=data)
 
 # Print the response from your function
+print("# Input")
+print(data)
+print("# Output")
 print(response.json())

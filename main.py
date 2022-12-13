@@ -1,7 +1,7 @@
 import json
 
 import functions_framework
-from ip_lookup import GeoLocation
+from iplookup import GeoLocation
 
 
 @functions_framework.http
