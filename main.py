@@ -5,7 +5,7 @@ from iplookup import GeoLocation
 
 
 @functions_framework.http
-def ip_lookup(request):
+def iplookup(request):
     """
     Defines ip_lookup Google Cloud Function
     :param request:
@@ -21,4 +21,5 @@ def ip_lookup(request):
         # each reply is a STRING (JSON not currently supported)
         replies.append(json.dumps(rs, ensure_ascii=False))
 
+    lookup.close()
     return json.dumps({'replies': replies})
