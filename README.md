@@ -6,7 +6,7 @@
 
 Enable Google Cloud Functions. Read more [here](https://cloud.google.com/functions/docs/create-deploy-gcloud). \
 Install and configure gcloud CLI. Read more [here](https://cloud.google.com/functions/docs/create-deploy-gcloud). \
-Create an account at MaxMind (OPTIONAL if you want to update the dataset). Read more [here](). 
+Create a free account at [MaxMind](https://www.maxmind.com/) (OPTIONAL if you want to update the dataset).
 
 ***Replace the following with your own
 1) \<your-project-id>
@@ -15,6 +15,7 @@ Create an account at MaxMind (OPTIONAL if you want to update the dataset). Read 
 
 ### 1. Clone the repository
     git clone https://github.com/justdataplease/bigquery-iplookup.git
+    cd bigquery-iplookup
 
 ### 2. CLI : Deploy Cloud Function (gcf)
     gcloud functions deploy bigquery-iplookup --gen2 --runtime python39 --trigger-http --project=<your-project-id> --entry-point=iplookup --source . --region=europe-west3 --memory=128Mi --max-instances=3 --allow-unauthenticated
