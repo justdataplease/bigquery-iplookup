@@ -60,7 +60,7 @@ From the output of the last command, note the name <gcf-conn-name> (i.e. xxxxxx.
 ### 7. BIGQUERY : Test Remote Function
     WITH A AS (SELECT `<your-project-id>.iplookup.lookup`(ip_address) ip_address_location,ip_address FROM `<your-project-id>.iplookup.example_dataset`)
     
-    select
+    SELECT
       ip_address,
       json_value(ip_address_location, '$.country') country,
       json_value(ip_address_location, '$.state') state,
@@ -68,7 +68,7 @@ From the output of the last command, note the name <gcf-conn-name> (i.e. xxxxxx.
       json_value(ip_address_location, '$.postal_code') postal_code,
       json_value(ip_address_location, '$.latitude') latitude,
       json_value(ip_address_location, '$.longitude') longitude
-    from a A;
+    FROM A;
 
 ### 8. CLI : Remove everything
     # Remove Cloud Function (gcf)

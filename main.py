@@ -7,7 +7,7 @@ from iplookup import GeoLocation
 @functions_framework.http
 def iplookup(request):
     """
-    Defines ip_lookup Google Cloud Function
+    Defines iplookup Google Cloud Function
     :param request:
     :return:
     """
