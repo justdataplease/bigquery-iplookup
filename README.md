@@ -1,5 +1,7 @@
 # Microservices as Functions in BigQuery - Offline IP Address Lookup using SQL (Part 2)
 
+Read original article [here](https://medium.com/geekculture/microservices-as-functions-in-bigquery-offline-ip-address-lookup-using-sql-part-2-7b0b91fa5700).
+
 ## How to reproduce
 
 ***Perform the following actions
