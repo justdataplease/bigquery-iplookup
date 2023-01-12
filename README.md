@@ -10,14 +10,14 @@ Create a free account at [MaxMind](https://www.maxmind.com/) (OPTIONAL if you wa
 
 ***Replace the following with your own
 1) \<your-project-id>
-2) \<gcf-conn-name> (step 2)
-3) \<gcf-endpoint> (step 4)
+2) \<gcf-endpoint> (step 2)
+3) \<gcf-conn> (step 3)
 
 ### 1. Clone the repository
     git clone https://github.com/justdataplease/bigquery-iplookup.git
     cd bigquery-iplookup
 
-### 2. CLI : Deploy Cloud Function (gcf)
+### 2. CLI : Deploy Cloud Function (gcf-endpoint)
     gcloud functions deploy bigquery-iplookup --gen2 --runtime python39 --trigger-http --project=<your-project-id> --entry-point=iplookup --source . --region=europe-west3 --memory=128Mi --max-instances=3 --allow-unauthenticated
 
 From the output note the uri  <gcf-endpoint> (i.e https://bigquery-iplookup-xxxxxx.a.run.app) 
@@ -51,7 +51,7 @@ From the output of the last command, note the name <gcf-conn-name> (i.e. xxxxxx.
 ### 6. BIGQUERY : Create a Remote Function 
     CREATE OR REPLACE FUNCTION `<your-project-id>.iplookup.lookup`(ip_address STRING)
     RETURNS STRING
-    REMOTE WITH CONNECTION `<gcf-conn-name>`
+    REMOTE WITH CONNECTION `<gcf-conn>`
         OPTIONS (
             -- change this to reflect the Trigger URL of your cloud function (look for the TRIGGER tab)
             endpoint = '<gcf-endpoint>'
@@ -78,4 +78,4 @@ From the output of the last command, note the name <gcf-conn-name> (i.e. xxxxxx.
     bq rm -r -f -d <your-project-id>:iplookup
 
     # Remove connection between BigQuery and Cloud Functions (gcf-conn)
-    bq rm --connection --location=EU <gcf-conn-name>
+    bq rm --connection --location=EU <gcf-conn>
