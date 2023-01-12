@@ -72,6 +72,54 @@ From the output of the last command, note the name <gcf-conn-name> (i.e. xxxxxx.
       json_value(ip_address_location, '$.longitude') longitude
     FROM A;
 
+Output
+    
+    1	
+    ip_address : 139.99.237.62
+    country : Australia
+    state : New South Wales
+    city : Sydney
+    postal_code : 2000
+    latitude : -33.8715
+    longitude : 151.2006
+
+    2	
+    ip_address : 20.111.54.16
+    country : France
+    state : Paris
+    city : Paris
+    postal_code : 75001
+    latitude : 48.8323
+    longitude : 2.4075
+
+    3	
+    ip_address : 190.61.88.147
+    country : Guatemala
+    state : Departamento de Guatemala
+    city : Guatemala City
+    postal_code : 01010
+    latitude : 14.6343
+    longitude : -90.5155
+
+    4	
+    ip_address : 185.143.146.171
+    country : Ukraine
+    state : Kyiv City
+    city : Kyiv
+    postal_code : 03187
+    latitude : 50.458
+    longitude : 30.5303
+
+    5	
+    ip_address : 121.126.20.41
+    country : South Korea
+    state : Seoul
+    city : Guro-gu
+    postal_code : 083
+    latitude : 37.4975
+    longitude : 126.8501
+
+
 ### 8. CLI : Remove everything
     # Remove Cloud Function (gcf)
     gcloud functions delete bigquery-iplookup --region=europe-west3 --project=<your-project-id> --gen2
